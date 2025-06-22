@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title> هديه من بندر </title>
+  <style>
+    body {
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3em;
+      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+      text-align: center;
+    }
+
+    .scanline {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        180deg,
+        rgba(0, 255, 0, 0.05),
+        rgba(0, 255, 0, 0.05) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .blink {
+      animation: blink 1s step-start infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: black;
+      border: 2px solid #00ff00;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #002200;
+    }
+  </style>
+</head>
+<body onload="playSound()">
+  <h1>✔  BN تم نقل معلوماتك بنجاح<span class="blink">_</span></h1>
+
+  <button onclick="history.back()">◀ الرجوع</button>
+
+  <audio id="hackSound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
+
+  <div class="scanline"></div>
+
+  <script>
+    function playSound() {
+      const sound = document.getElementById('hackSound');
+      sound.play().catch(() => {
+        // تجاهل الخطأ إن لم يتم تشغيل الصوت تلقائياً
+      });
+    }
+  </script>
+</body>
+</html>
